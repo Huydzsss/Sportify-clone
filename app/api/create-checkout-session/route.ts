@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       mode: 'subscription',
       allow_promotion_codes: true,
       subscription_data: {
-        metadata,  // Xóa `trial_from_plan` nếu không được hỗ trợ
+        metadata
       },
       success_url: `${getURL()}account`,
       cancel_url: `${getURL()}`,

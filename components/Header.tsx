@@ -26,7 +26,6 @@ const Header:React.FC<HeaderProps> = ({children,className}) =>{
     const fullName = user?.user_metadata?.full_name || "User";
     const handleLogOut = async() =>{
         const {error} = await supabaseClient.auth.signOut();
-        //reset tat ca bai hat
         router.refresh();
         if(error){
             toast.error(error.message);
@@ -102,10 +101,10 @@ const Header:React.FC<HeaderProps> = ({children,className}) =>{
                         <img 
                             src={avatarUrl} 
                             alt={`${fullName}'s avatar`} 
-                            className="w-8 h-auto  object-cover rounded-full" 
+                            className="w-10 h-auto  object-cover rounded-full " 
                         />
                     ) : (
-                        <FaUserAlt className="text-white" /> 
+                        <FaUserAlt  /> 
                     )}
                 </Button>
               </div>
