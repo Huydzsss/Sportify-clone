@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       cancel_url: `${getURL()}`,
     });
     return NextResponse.json({ sessionId: session.id });
-  } catch (error: unknown) {
+  } catch (error: any) {
     console.log(error);
     return new NextResponse('Internal Error', { status: 500 });
   }
