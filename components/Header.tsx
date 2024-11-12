@@ -22,6 +22,8 @@ const Header:React.FC<HeaderProps> = ({children,className}) =>{
     const router = useRouter();
     const supabaseClient = useSupabaseClient();
     const { user } = useUser();
+    const avatarUrl = user?.user_metadata?.avatar_url;
+    const fullName = user?.user_metadata?.full_name || "User";
     const handleLogOut = async() =>{
         const {error} = await supabaseClient.auth.signOut();
         //reset tat ca bai hat
@@ -32,6 +34,7 @@ const Header:React.FC<HeaderProps> = ({children,className}) =>{
           toast.success("Logout susscess")
         }
     }
+    console.log(user);
     return(
         <div
         className={twMerge(
@@ -90,11 +93,20 @@ const Header:React.FC<HeaderProps> = ({children,className}) =>{
                       items-center
                       "
               >
+               
                 <Button onClick={handleLogOut} className="bg-white px-6 py-2">
                   Logout
                 </Button>
                 <Button onClick={() => router.push('/account')} className="bg-white">
-                  <FaUserAlt />
+                {avatarUrl ? (
+                        <img 
+                            src={avatarUrl} 
+                            alt={`${fullName}'s avatar`} 
+                            className="w-8 h-auto  object-cover rounded-full" 
+                        />
+                    ) : (
+                        <FaUserAlt className="text-white" /> 
+                    )}
                 </Button>
               </div>
             ) : (

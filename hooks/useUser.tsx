@@ -31,7 +31,7 @@ export const MyUserContextProvider = (props: Props) => {
     const [subscription, setSubscription] = useState<Subscription | null>(null);
 
     const getUserDetails = async () => {
-        const { data, error } = await supabase.from('user').select('*').single();
+        const { data, error } = await supabase.from('users').select('*').single();
         if (error){
             console.log('Error fetching user details:', error);
         
@@ -51,7 +51,7 @@ export const MyUserContextProvider = (props: Props) => {
         }
         return data;
     };
-
+        
     useEffect(() => {
         if (user && !isLoadingData && !userDetails && !subscription) {
             setIsLoadingData(true);
