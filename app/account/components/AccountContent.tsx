@@ -29,7 +29,7 @@ export const AccountContent = () => {
   const redirectToCustomerPortal = async () => {
     setLoading(true);
     try {
-      const { url, error } = await postData({
+      const { url } = await postData({
         url: '/api/create-portal-link',
       });
       window.location.assign(url);
